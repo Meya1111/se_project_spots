@@ -38,10 +38,21 @@
 .profile__edit-btn {
   margin-top: auto;
   margin-left: auto;
+  color: #212121;
+  opacity: ;
+  font-size: 16px;
+  line-height: 100%;
+  font-weight: 500;
 }
 
 .profile__add-btn {
   margin-left: auto;
+  background-color: ;
+  color: ;
+  opacity: ;
+  font-size: ;
+  line-height: ;
+  font-weight: ;
 }
 
 @media screen and (max-width: 627px) {
@@ -61,13 +72,20 @@
   }
 
   .profile__name {
-    font-size: 20px;
+    font-size: 32px;
     margin: 0 0 6px;
     max-width: 288px;
+    color: #212121;
+    line-height: 100%;
   }
 
   .profile__description {
     margin: 0 0 32px;
+    color: #212121B2;
+    opacity: 70%;
+    font-size: 16px;
+    line-height: 100%;
+    font-weight: 500;
   }
 
   .profile__column {
