@@ -29,9 +29,15 @@ border-radius: 8px;
   white-space: nowrap;
   overflow: hidden;
   max-width: 353px;
+  margin: 0;
+  color: #212121;
 }
 
-@media screen and (max-width: 627px) {   
+@media screen and (max-width: 627px) { 
+  .card__title {
+    font-size: 16px;
+    line-height: 100%;
+  }  
 .card__image {
  height: 288px;
 }
