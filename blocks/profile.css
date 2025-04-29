@@ -36,10 +36,10 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical; 
     color: #212121B2;
-    opacity: 70%;
     font-size: 16px;
     line-height: 100%;
     font-weight: 500;
+    max-width: 420px;
 }
 
 .profile__edit-btn {
@@ -87,7 +87,6 @@
     width: 80px;
     margin-bottom: 12px;
     margin-right: 0;
-    border-radius: 8px;
   }
 
   .profile__name {
