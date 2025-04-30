@@ -55,6 +55,11 @@
   opacity: 70%;
 }
 
+.profile__edit-btn:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
 .profile__add-btn {
   margin-left: auto;
   background-color: #212121;
@@ -71,8 +76,13 @@
   font-size: 16px;
   line-height: 100%;
   font-weight: 500;
+}
+
+.profile__add-btn:hover {
+  opacity: 1;
   cursor: pointer;
 }
+
 
 @media screen and (max-width: 627px) {
   .profile {
