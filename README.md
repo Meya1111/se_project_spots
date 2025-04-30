@@ -16,6 +16,8 @@ This webpage is deployed to Github Pages
 -Deployment Link: https://meya1111.github.io/se_project_spots/
   
 
+## Video
+https://drive.google.com/file/d/12S6ip0XWJ7A-XDOS0ZPyY-acVCINGUSL/view?usp=drive_link
 
   
 

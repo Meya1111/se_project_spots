@@ -19,6 +19,7 @@ border-radius: 8px;
   border: none;
   background-color: transparent;
   opacity: 40%;
+  cursor: pointer;
 }
 
 .card__title {
