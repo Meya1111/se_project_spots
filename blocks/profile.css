@@ -117,5 +117,12 @@
 
   .profile__add-btn {
     margin: 0;
+    width: 288px;
+    height: 52px;
+    gap: 32px;
   }
-}
+
+  .profile__edit-btn {
+    margin: auto;
+  }
+
