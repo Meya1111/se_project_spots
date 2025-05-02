@@ -1,8 +1,7 @@
 .cards {
   padding-top: 20px;
   padding-bottom: 40px;
-  border-style: solid;
-  border: 1px solid #21212166;
+  border: 1px
 }
 
 .cards__list {
