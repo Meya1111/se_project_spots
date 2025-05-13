@@ -34,6 +34,8 @@
 
 .modal__title {
     margin: 0 0 32px;
+    color: #212121;
+    font-family: Poppins;
 }
 
 .modal__form {
@@ -43,6 +45,11 @@
 
 .modal__label {
     margin: 0 0 32px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 110.00000000000001%;
+    color: #212121B2;
+    font-family: Poppins;
 }
 
 .modal__input {
@@ -62,5 +69,9 @@
 
 .modal__submit-btn {
     max-width: 156px;
-    color: #212121;
+    background-color: #212121;
+    color: #FCF5E5;
+    height: 52px;
+    width: 156px;
+    border-radius: 8px;
 }
