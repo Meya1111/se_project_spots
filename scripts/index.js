@@ -1,12 +1,12 @@
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector( ".modal__close-btn");
-const editProfileForm = editProfileModal.querySelector(".modal")
+const editProfileForm = editProfileModal.querySelector(".modal__form")
 const editProfileNameInput = editProfileModal.querySelector(
-   "#profile-name-input"
+   "#card-description-input"
 );
 const editProfileDescriptionInput = editProfileModal.querySelector(
-   "profile-description-input"
+   "#profile-description-input"
 );
 
 const newPostBtn = document.querySelector(".profile__add-btn");
@@ -40,4 +40,4 @@ profileNameEl.textContent = editProfileNameInput.value;
 //ToDo -handle the other input
 }
 
-editProfileForm.addEventListener("submit", handledProfileSubmit);
+editProfileForm.addEventListener("submit", handledEditProfileSubmit);
