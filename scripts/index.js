@@ -20,7 +20,9 @@ function handleButtonClick() {
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
   editProfileModal.classList.add("modal_is-opened");
 }
-editProfileBtn.addEventListener("click", handleButtonClick);
+editProfileBtn.addEventListener("click",function () {
+ editProfileModal.classList.add("modal_is-opened")
+});
 
 editProfileCloseBtn.addEventListener("click", function () {
   editProfileModal.classList.remove("modal_is-opened");
