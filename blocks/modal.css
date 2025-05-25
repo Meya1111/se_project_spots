@@ -9,6 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .modal_is-opened {
@@ -32,8 +33,10 @@
     width: 40px;
     height: 40px;
     opacity: 40%;
+}
+
+.modal__close-btn:hover {
     cursor: pointer;
-    
 }
 
 .modal__title {
