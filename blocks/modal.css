@@ -79,6 +79,10 @@
     cursor: pointer;
 }
 
+@media screen and (max-width:320px) {
+    
+}
+
 .modal__input::placeholder {
     color: #2121214d;
 }
