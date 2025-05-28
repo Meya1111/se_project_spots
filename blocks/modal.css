@@ -37,10 +37,9 @@
     height: 40px;
     opacity: 40%;
     border: 2px;
-    background-image: url("../images/Group\ 27.svg")
-    background-color: ;
-    padding: ;
-    color: #212121;
+    background-image: url("../images/Group\ 27.svg");
+    background-color: transparent;
+    background-position: center;
     opacity: 40%;
 }
 
