@@ -40,8 +40,8 @@
     background-image: url("../images/Group\ 27.svg")
     background-color: ;
     padding: ;
-    *add opicity and make it look like figma*
-    
+    color: #212121;
+    opacity: 40%;
 }
 
 .modal__close-btn:hover {
