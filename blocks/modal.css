@@ -11,6 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 10px;
 }
 
 
@@ -36,16 +37,14 @@
     width: 40px;
     height: 40px;
     opacity: 40%;
-    border: 2px;
     background-image: url("../images/Group\ 27.svg");
     background-color: transparent;
     background-position: center;
-    opacity: 40%;
 }
 
 .modal__close-btn:hover {
     cursor: pointer;
-    opacity: 40%;
+    opacity: 100%;
 }
 
 .modal__title {
@@ -86,6 +85,11 @@
     color: #212121;
     box-sizing: border-box;
     cursor: pointer;
+    border-radius: 8px;
+}
+
+.modal__input:hover {
+
 }
 
 @media screen and (max-width:320px) {
@@ -96,21 +100,21 @@
     }
     
     .modal__label {
-        width: 276px;
-        height: 74px;
+        width: 100%;
         gap: 8px;
+        overflow: hidden;
     }
     
     .modal__submit-btn {
         width: 276px;
-        height: 52px;
-        border-radius: 8px;
-        padding: 18px 32px 18px 32px;
-        gap: 8px;
     }
+
+    .modal__submit-btn:hover {
+        cursor: pointer;
+    }
+
     .modal__input {
         width: 275px;
-        height: 48px;
         border-radius: 8px;
         border: 1px;
         gap: 10px;

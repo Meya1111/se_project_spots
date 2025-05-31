@@ -20,7 +20,7 @@ function handleButtonClick() {
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
   editProfileModal.classList.add("modal_is-opened");
 }
-editProfileBtn.addEventListener("click",function () {
+editProfileBtn.addEventListener("click",function ("click", handleButtonClick); {
  editProfileModal.classList.add("modal_is-opened")
 });
 
@@ -39,7 +39,22 @@ newPostCloseBtn.addEventListener("click", function () {
 function handledEditProfileSubmit(evt) {
   evt.preventDefault();
   profileNameEl.textContent = editProfileNameInput.value;
-  //ToDo -handle the other input
+  profileDescriptionEl.textContent = editProfileDescriptionInput.value;
+  editProfileModal.classList.remove("modal_is-opened");
 }
 
-editProfileForm.addEventListener("submit", handledEditProfileSubmit);
+editProfileForm.addEventListener("submit", handledEditProfileSubmit); 
+
+const newPostForm = document.querySelector(".new-post-form");
+const newPostTitleInput = document.querySelector(".post-title-input");
+const newPostLinkInput = document.querySelector(".post-link-input");
+
+function handledNewPostSubmit(evt) {
+  evt.preventDefault();
+  console.log("Post title:",newPostTitleInput.value);
+  console.log("Post link:", newPostLinkInput.value);
+
+  newPostModal.classList.remove("modal_is-opened");
+}
+
+newPostForm.addEventListener("submit, handleNewPostSubmit");
