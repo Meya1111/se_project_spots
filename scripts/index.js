@@ -2,9 +2,8 @@ const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 const editProfileForm = editProfileModal.querySelector(".modal__form");
-const editProfileNameInput = editProfileModal.querySelector(
-  "#edit-profile-name"
-);
+const editProfileNameInput =
+  editProfileModal.querySelector("#edit-profile-name");
 const editProfileDescriptionInput = editProfileModal.querySelector(
   "#profile-description-input"
 );
@@ -20,8 +19,7 @@ function handleButtonClick() {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
 }
-editProfileBtn.addEventListener("click", handleButtonClick
-);
+editProfileBtn.addEventListener("click", handleButtonClick);
 
 editProfileCloseBtn.addEventListener("click", function () {
   editProfileModal.classList.remove("modal_is-opened");
@@ -42,7 +40,7 @@ function handledEditProfileSubmit(evt) {
   editProfileModal.classList.remove("modal_is-opened");
 }
 
-editProfileForm.addEventListener("submit", handledEditProfileSubmit); 
+editProfileForm.addEventListener("submit", handledEditProfileSubmit);
 
 const newPostForm = document.querySelector(".new-post-form");
 const newPostTitleInput = document.querySelector(".post-title-input");
@@ -50,10 +48,10 @@ const newPostLinkInput = document.querySelector(".post-link-input");
 
 function handledNewPostSubmit(evt) {
   evt.preventDefault();
-  console.log("Post title:",newPostTitleInput.value);
+  console.log("Post title:", newPostTitleInput.value);
   console.log("Post link:", newPostLinkInput.value);
 
   newPostModal.classList.remove("modal_is-opened");
 }
 
-newPostForm.addEventListener("submit, handleNewPostSubmit");
+newPostForm.addEventListener("submit", handleNewPostSubmit);
