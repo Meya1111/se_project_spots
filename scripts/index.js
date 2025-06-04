@@ -46,7 +46,7 @@ editProfileForm.addEventListener("submit", handledEditProfileSubmit);
 const newPostTitleInput = document.querySelector(".post-title-input");
 const newPostLinkInput = document.querySelector(".post-link-input");
 
-function handledNewPostSubmit(evt) {
+function handleNewPostSubmit(evt) { 
   evt.preventDefault();
   console.log("Post title:", newPostTitleInput.value);
   console.log("Post link:", newPostLinkInput.value);
