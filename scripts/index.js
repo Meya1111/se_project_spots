@@ -5,7 +5,7 @@ const editProfileForm = editProfileModal.querySelector(".modal__form");
 const editProfileNameInput =
   editProfileModal.querySelector("#edit-profile-input");
 const editProfileDescriptionInput = editProfileModal.querySelector(
-  "#profile-description-input"
+  "#edit-profile-description"
 );
 
 const newPostBtn = document.querySelector(".profile__add-btn");
@@ -43,8 +43,8 @@ function handledEditProfileSubmit(evt) {
 
 editProfileForm.addEventListener("submit", handledEditProfileSubmit);
 
-const newPostTitleInput = document.querySelector(".post-title-input");
-const newPostLinkInput = document.querySelector(".post-link-input");
+const newPostTitleInput = document.querySelector("#card-description-input");
+const newPostLinkInput = document.querySelector("#card-link-input");
 
 function handleNewPostSubmit(evt) { 
   evt.preventDefault();
