@@ -72,6 +72,16 @@ newPostCloseBtn.addEventListener("click", function () {
 
 function handledEditProfileSubmit(evt) {
   evt.preventDefault();
+  
+  const CardElement = getCardElement({
+    name: captionInputEl.value,
+    link: linkInputEl.value,
+  });
+  CardsList.append(CardElement);
+
+  addCardModal.classList.remove("modal_is-opened");
+
+
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
   editProfileModal.classList.remove("modal_is-opened");
@@ -81,6 +91,30 @@ editProfileForm.addEventListener("submit", handledEditProfileSubmit);
 
 const newPostTitleInput = document.querySelector("#card-description-input");
 const newPostLinkInput = document.querySelector("#card-link-input");
+
+const cardTemplate = document
+ .querySelector("#card-template")
+ .content.querySelector(".card");
+ const CardsList = document.querySelector(".cards__list")
+
+function getCardElement(data) {
+  const CardElement = cardTemplate.cloneNode(true);
+  const CardTitleEl = CardElement.querySelector(".card__title");
+  const CardImageEl = CardElement.querySelector(".card__Image");
+
+  cardImageEl_src = data.link;
+  cardImageEl_alt = data.name;
+  cardImageEl_textcontent = data.name;
+
+  const cardlinkBtnEl = CardElement.querySelector(".card__like-btn");
+  console.log("cardlinkBtnEl:", cardlinkBtnEl);
+  cardlinkBtnEl.addEventListener("click", () => {
+    console.log("clicked");
+   cardlinkBtnEl.classList.toggle("card__like-btn_active"); 
+  });
+
+  return CardElement
+}
 
 function handleNewPostSubmit(evt) { 
   evt.preventDefault();
@@ -95,4 +129,9 @@ newPostForm.addEventListener("submit", handleNewPostSubmit);
 initialCards.forEach(function (item) {
   console.log(item.name);
   console.log(item.link);
+});
+
+initialCards.forEach(function (item){
+  const CardElement = getCardElement(item);
+  CardsList.append(CardElement);
 });
