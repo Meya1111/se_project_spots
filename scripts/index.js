@@ -113,6 +113,12 @@ function getCardElement(data) {
    cardlinkBtnEl.classList.toggle("card__like-btn_active"); 
   });
 
+  const cardDeleteBtnEl = CardElement.querySelector(".card__delete-button");
+  cardDeleteBtnEl.addEventListener("Click", () => {
+   CardElement.remove();
+   CardElement = null;
+  });
+
   return CardElement
 }
 
