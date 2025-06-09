@@ -42,6 +42,11 @@
   border: 0;
 }
 
+.modal__close_type_preview {
+  top: 0;
+  right: -52.5px;
+}
+
 .modal__close-btn:hover {
   cursor: pointer;
   opacity: 100%;
@@ -113,6 +118,22 @@
 
 .modal__submit-btn:hover {
   opacity: 0.8;
+}
+
+.modal__container {
+  position: relative;
+}
+
+.modal__image {
+  max-width: 80vw;
+  min-height: 80vh;
+  width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.modal__caption {
+color: #FFFFFF;
 }
 
 @media screen and (max-width: 320px) {
