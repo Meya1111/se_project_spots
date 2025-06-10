@@ -14,6 +14,10 @@
   padding: 0 10px;
 }
 
+.modal_type_preview {
+  padding: 0 16px;
+}
+
 .modal_is-opened {
   visibility: visible;
   opacity: 1;
@@ -120,7 +124,7 @@
   opacity: 0.8;
 }
 
-.modal__container {
+.modal__image-container {
   position: relative;
 }
 
@@ -130,10 +134,22 @@
   width: 100%;
   object-fit: contain;
   display: block;
+  border-radius: 8px;
 }
 
 .modal__caption {
 color: #FFFFFF;
+}
+
+@media screen and (max-width: 627px) {
+  .modal__close_type_preview {
+  top: -48px;
+  right: 0;
+  }
+
+.modal__image {
+  max-width: unset;
+}
 }
 
 @media screen and (max-width: 320px) {
