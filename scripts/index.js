@@ -1,3 +1,5 @@
+import {initialCards} from './cards.js';
+
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
@@ -59,7 +61,7 @@ editProfileForm.addEventListener("submit", handledEditProfileSubmit);
  const cardsList = document.querySelector(".cards__list")
 
 function getCardElement(data) {
-  let cardElement = cardTemplate.cloneNode(true);
+  let cardElement = cardTemplate.content.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
@@ -67,13 +69,10 @@ function getCardElement(data) {
  const cardTitleEl = cardElement.querySelector(".card__title");
   cardTitleEl.textContent = data.name;
 
-  return cardElement;
-}
-
   const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
-  cardlinkBtnEl.addEventListener("click", () => {
-    console.log("clicked");
-   cardlinkBtnEl.classList.toggle("card__like-btn_active"); 
+
+  cardLikeBtnEl.addEventListener("click", () => {
+   cardLikeBtnEl.classList.toggle("card__like-btn_active"); 
   });
 
   const cardDeleteBtnEl = cardElement.querySelector(".card__delete-button");
@@ -88,6 +87,7 @@ function getCardElement(data) {
   });
 
   return cardElement;
+}
 
 function handleNewPostSubmit(evt) { 
   evt.preventDefault();
