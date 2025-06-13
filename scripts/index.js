@@ -97,7 +97,7 @@ function handleNewPostSubmit(evt) {
     link: linkInputEl.value,
   });
 
-  CardsList.append(CardElement);
+  cardsList.append(cardElement);
 
   closeModal(newPostModal);
 }
