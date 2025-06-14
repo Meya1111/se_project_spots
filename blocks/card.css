@@ -36,11 +36,16 @@
   border: none;
   background-color: transparent;
   opacity: 40%;
+  cursor: pointer;
+  padding: 8px;
 }
 
 .card__like-btn_active {
   background-image: url(../images/likeactive.svg);
   opacity: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
 
 .card__like-btn_active:hover {
