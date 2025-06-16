@@ -49,6 +49,8 @@
 .modal__close_type_preview {
   top: 0;
   right: -52.5px;
+  background-image: url("../images/Group\ 27.svg");
+  position: absolute; 
 }
 
 .modal__close-btn:hover {
