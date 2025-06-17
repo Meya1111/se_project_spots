@@ -6,8 +6,8 @@ const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 const editProfileForm = document.forms["edit-profile-form"];
 const editProfileNameInput = editProfileForm.elements["edit-profile-input"];
 const editProfileDescriptionInput = editProfileModal.querySelector( "#edit-profile-description");
-const newPostTitleInput = document.querySelector("#card-description-input");
-const newPostLinkInput = document.querySelector("#card-link-input");
+const captionInputEl = document.querySelector("#card-description-input");
+const linkInputEl = document.querySelector("#card-link-input");
 const cardTemplate = document.querySelector("#card-template");
 
 function openModal(modal){
@@ -92,7 +92,7 @@ function getCardElement(data) {
 function handleNewPostSubmit(evt) { 
   evt.preventDefault();
   
-  const CardElement = getCardElement({
+  const cardElement = getCardElement({
     name: captionInputEl.value,
     link: linkInputEl.value,
   });
