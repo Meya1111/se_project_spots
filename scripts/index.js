@@ -27,6 +27,10 @@ const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close_type_preview");
 const previewImageEl = previewModal.querySelector(".modal__image");
 
+previewModalCloseBtn.addEventListener("click", () => {
+closeModal(previewModal);
+});
+
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 function handleButtonClick() {
