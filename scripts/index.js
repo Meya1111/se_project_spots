@@ -24,7 +24,7 @@ const newPostForm = newPostModal.querySelector(".modal__form");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 
 const previewModal = document.querySelector("#preview-modal");
-const previewModalCloseBtn = previewModal.querySelector(".modal__close");
+const previewModalCloseBtn = previewModal.querySelector(".modal__close_type_preview");
 const previewImageEl = previewModal.querySelector(".modal__image");
 
 const profileNameEl = document.querySelector(".profile__name");
