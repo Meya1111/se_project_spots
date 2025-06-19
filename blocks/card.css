@@ -16,11 +16,18 @@
 }
 
 .card__delete-button {
-  width: 32px;
-  height: 32px;
+  width: 12px;
+  height: 15px;
   position: absolute;
-  top: 10px;
+  top: 9px;
   right: 10px;
+  background-image: url(../images/Deletebtn.svg);
+  background-size: contain;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 .card__content {
