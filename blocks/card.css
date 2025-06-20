@@ -31,6 +31,10 @@
   padding: 0;
 }
 
+.card__delete-button:hover {
+  background-image: url(../images/State=Hover\ \(1\).svg);
+}
+
 .card__content {
   display: flex;
   align-items: center;
