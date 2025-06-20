@@ -41,7 +41,7 @@ function handleButtonClick() {
 editProfileBtn.addEventListener("click", handleButtonClick);
 
 editProfileCloseBtn.addEventListener("click", function () {
-  closeModal("editProfileModal");
+  closeModal(editProfileModal);
 });
 
 newPostBtn.addEventListener("click", function () {

@@ -16,8 +16,9 @@
 }
 
 .card__delete-button {
-  width: 12px;
-  height: 15px;
+  width: 32px;
+  height: 32px;
+  background-size: 12px 15px;
   position: absolute;
   top: 9px;
   right: 10px;
