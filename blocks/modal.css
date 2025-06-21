@@ -16,6 +16,7 @@
 
 .modal_type_preview {
   padding: 0 16px;
+  border-radius: 8px;
 }
 
 .modal_is-opened {
@@ -152,7 +153,18 @@
 }
 
 .modal__caption {
+background-color: #212121;
 color: #FFFFFF;
+padding: 4px 8px;
+border-radius: 8px;
+font-size: 20px;
+font-weight: 500;
+margin-top: 12px;
+text-align: left;
+display: inline-block;
+text-align: center;
+font-family: Poppins, sans-serif;
+line-height: 24px;
 }
 
 @media screen and (max-width: 627px) {

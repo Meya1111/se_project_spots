@@ -5,7 +5,6 @@
   position: relative;
 }
 
-
 .card__image {
   height: 413px;
   width: 100%;
@@ -61,7 +60,7 @@
 }
 
 .card__like-btn_active:hover {
-opacity: 0.4;
+  opacity: 0.4;
 }
 
 .card__like-btn:hover {
