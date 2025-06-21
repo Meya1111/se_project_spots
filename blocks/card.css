@@ -32,7 +32,7 @@
 }
 
 .card__delete-button:hover {
-  background-image: url(../images/State=Hover\ \(1\).svg);
+  background-image: url(../images/statehover.svg);
 }
 
 .card__content {

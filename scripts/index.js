@@ -101,9 +101,11 @@ function handleNewPostSubmit(evt) {
     link: linkInputEl.value,
   });
 
-  cardsList.append(cardElement);
+  cardsList.prepend(cardElement);
 
   closeModal(newPostModal);
+  newPostForm.reset();
+
 }
 
 newPostForm.addEventListener("submit", handleNewPostSubmit);
