@@ -38,11 +38,7 @@
             <template id="card-template">
               <li class="card">
                 <button class="card__delete-button" type="button"></button>
-                <img
-                  src="#"
-                  alt=""
-                  class="card__image"
-                  />
+                <img src="#" alt="" class="card__image" />
                 <div class="card__content">
                   <h2 class="card__title"></h2>
                   <button type="button" class="card__like-btn"></button>
@@ -56,76 +52,77 @@
         <p class="footer__copyright">2023 &copy; Spots</p>
       </footer>
     </div>
-      <div class="modal" id="edit-profile-modal">
-        <div class="modal__container">
-          <button type="button" class="modal__close-btn"></button>
-          <h2 class="modal__title">Edit Profile</h2>
-          <form class="modal__form" id="edit-profile-form" name="edit-profile-form">
-            <label for="edit-profile-input" class="modal__label">
-              Name
-              <input required
-              id="edit-profile-input" 
-              type="text" 
-              class="modal__input"
-              placeholder="Type your name" 
-              />
-            </label>
-            <label for="edit-profile-description" class="modal__label">
-              Description 
-              <input 
-              id="edit-profile-description" 
-              type="text" 
-              class="modal__input"
-              placeholder="Describe yourself" 
+    <div class="modal" id="edit-profile-modal">
+      <div class="modal__container">
+        <button type="button" class="modal__close-btn"></button>
+        <h2 class="modal__title">Edit Profile</h2>
+        <form
+          class="modal__form"
+          id="edit-profile-form"
+          name="edit-profile-form"
+        >
+          <label for="edit-profile-input" class="modal__label">
+            Name
+            <input
               required
-              />
-            </label>
-            <button type="submit" class="modal__submit-btn">Save</button>
-          </form>
-        </div>
-      </div>
-      <div class="modal" id="new-post-modal">
-        <div class="modal__container">
-          <button type="button" class="modal__close-btn"></button>
-          <h2 class="modal__title">New post</h2>
-          <form class="modal__form">
-            <label for="card-link-input" class="modal__label">
-              Name 
-              <input 
-              id="card-link-input" 
-              type="url" 
+              id="edit-profile-input"
+              type="text"
               class="modal__input"
-              placeholder="Place a link to the picture" 
-              />
-            </label>
-            <label for="card-description-input" class="modal__label">
-              Description 
-              <input 
-              id="card-description-input" 
-              
-              type="text" 
+              placeholder="Type your name"
+            />
+          </label>
+          <label for="edit-profile-description" class="modal__label">
+            Description
+            <input
+              id="edit-profile-description"
+              type="text"
               class="modal__input"
-              placeholder="Type your caption" 
-              />
-            </label>
-            <button type="submit" class="modal__submit-btn">Save</button>
-          </form>
-        </div> 
+              placeholder="Describe yourself"
+              required
+            />
+          </label>
+          <button type="submit" class="modal__submit-btn">Save</button>
+        </form>
       </div>
-      <div class="modal modal_type_preview" id="preview-modal">
-        <div class="modal__image-container">
-          <button 
+    </div>
+    <div class="modal" id="new-post-modal">
+      <div class="modal__container">
+        <button type="button" class="modal__close-btn"></button>
+        <h2 class="modal__title">New post</h2>
+        <form class="modal__form">
+          <label for="card-link-input" class="modal__label">
+            Name
+            <input
+              id="card-link-input"
+              type="url"
+              class="modal__input"
+              placeholder="Place a link to the picture"
+            />
+          </label>
+          <label for="card-description-input" class="modal__label">
+            Description
+            <input
+              id="card-description-input"
+              type="text"
+              class="modal__input"
+              placeholder="Type your caption"
+            />
+          </label>
+          <button type="submit" class="modal__submit-btn">Save</button>
+        </form>
+      </div>
+    </div>
+    <div class="modal modal_type_preview" id="preview-modal">
+      <div class="modal__image-container">
+        <button
           aria-label="Close modal"
-          type="button" 
+          type="button"
           class="modal__close_type_preview"
-          ></button>
-          <img src="./images/Group 27.svg"
-           alt="Close" 
-           class="modal__image"
-           />
-          <p class="modal__caption">Golden Gate Bridge</p>
-        </div>
+        ></button>
+        <img src="./images/closebutton.svg" alt="Close" class="modal__image" />
+        <p class="modal__caption">Golden Gate Bridge</p>
       </div>
+    </div>
 
     <script type="module" src="./scripts/index.js"></script>
   </body>
