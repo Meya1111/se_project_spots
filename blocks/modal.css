@@ -169,8 +169,11 @@ line-height: 24px;
 
 @media screen and (max-width: 627px) {
   .modal__close_type_preview {
-  top: -48px;
-  right: 0;
+  max-width: 90vw;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
   }
 
 .modal__image {
