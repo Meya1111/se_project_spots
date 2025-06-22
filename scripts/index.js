@@ -80,9 +80,9 @@ function getCardElement(data) {
   });
 
   const cardDeleteBtnEl = cardElement.querySelector(".card__delete-button");
-  cardDeleteBtnEl.addEventListener("Click", () => {
+  cardDeleteBtnEl.addEventListener("click", () => {
+  let cardElement = cardDeleteBtnEl.closest("li");
    cardElement.remove();
-   cardElement = null;
   });
 
   cardImageEl.addEventListener("click", () => {
