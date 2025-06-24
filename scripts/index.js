@@ -69,7 +69,7 @@ function getCardElement(data) {
   const cardImageEl = cardElement.querySelector(".card__image");
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
-
+  
  const cardTitleEl = cardElement.querySelector(".card__title");
   cardTitleEl.textContent = data.name;
 
@@ -87,6 +87,10 @@ function getCardElement(data) {
 
   cardImageEl.addEventListener("click", () => {
     previewImageEl.src = data.link;
+
+    const caption = document.querySelector(".modal__caption");
+    caption.textContent = data.name;
+  
     openModal(previewModal);
   });
 
