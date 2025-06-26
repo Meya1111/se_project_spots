@@ -125,6 +125,10 @@
   margin: 8px;
 }
 
+.modal__input_type_error {
+  border: 1px solid rgba(225, 0, 0, 0.6);
+}
+
 .modal__input::placeholder {
   color: #2121214d;
 }
