@@ -148,6 +148,12 @@
   font-family: Poppins, Arial, Helvetica, sans-serif;
 }
 
+.modal__button_disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .modal__submit-btn:hover {
   opacity: 0.8;
 }

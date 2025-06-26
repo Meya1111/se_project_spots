@@ -18,14 +18,21 @@ const checkInputValidity = (formEl, inputEl) => {
     }
 };
 
-function toggleButtonState(inputList, buttonElement) {
-    const isFormValid = inputList.every((input) => input.validity.valid)
-    if (isFormValid) { 
- buttonElement.removeAttribute("disabled");
-    } else {
-      buttonElement.setAttribute("disabled", true);  
-    } 
-}
+const hasInvalidInput = (inputList) => {
+    return inputList.some((input) => {
+    return !input.validity.valid;
+    });
+};
+
+const toggleButtonState = (inputList, buttonEl) => {
+if (hasInvalidInput(inputList)) {
+buttonEl.disabled = true;
+buttonEl.classList.add("modal__button_disabled");
+} else {
+  buttonEl.disabled = false;
+  buttonEl.classList.remove("modal__button_disabled");  
+ }
+};
 
 const setEventListeners = (formEl) => {
     const inputList = Array.from(formEl.querySelectorAll('.modal__input'));
@@ -36,6 +43,7 @@ const setEventListeners = (formEl) => {
     inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
     checkInputValidity(formEl, inputElement);
+    toggleButtonState(inputList, buttonElement);
     });
     });
 };

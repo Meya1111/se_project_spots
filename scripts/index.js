@@ -8,6 +8,7 @@ const editProfileNameInput = editProfileForm.elements["edit-profile-input"];
 const editProfileDescriptionInput = editProfileModal.querySelector( "#edit-profile-description");
 const captionInputEl = document.querySelector("#card-description-input");
 const linkInputEl = document.querySelector("#card-link-input");
+const cardSubmitBtn = newPostModal.querySelector(".modal__button");
 const cardTemplate = document.querySelector("#card-template");
 
 function openModal(modal){
@@ -109,7 +110,7 @@ function handleNewPostSubmit(evt) {
 
   closeModal(newPostModal);
   newPostForm.reset();
-
+  disableButton(cardSubmitBtn);
 }
 
 newPostForm.addEventListener("submit", handleNewPostSubmit);
