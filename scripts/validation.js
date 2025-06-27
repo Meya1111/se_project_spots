@@ -33,16 +33,20 @@ const hasInvalidInput = (inputList) => {
     });
 };
 
-const toggleButtonState = (inputList, buttonEl) => {
+const toggleButtonState = (inputList, buttonEl, config) => {
 if (hasInvalidInput(inputList)) {
-buttonEl.disabled = true;
-buttonEl.classList.add("modal__button_disabled");
-} else {
-  buttonEl.disabled = false;
-  buttonEl.classList.remove("modal__button_disabled");  
- }
+   const disabledButton = (buttonEl, config) => 
+   } else {
+ buttonEl.disabled = true;
+ buttonEl.classList.remove(config.inactiveButtonClass);
+}
 };
 
+const disableButton = (buttonEL, config) => {
+buttonEl.disabled = true;
+buttonEl.classList.add(config.inactiveButtonClass);
+};
+ 
 const setEventListeners = (formEl, config) => {
     const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
     const buttonElement = formEl.querySelector(config.submitButtonSelector);
@@ -64,4 +68,6 @@ const enableValidation = (config) => {
     });
 };
 
-enableValidation(settings);
+export { enableValidation };
+
+
