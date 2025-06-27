@@ -6,10 +6,6 @@ const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 const editProfileForm = document.forms["edit-profile-form"];
 const editProfileNameInput = editProfileForm.elements["edit-profile-input"];
 const editProfileDescriptionInput = editProfileModal.querySelector( "#edit-profile-description");
-const captionInputEl = document.querySelector("#card-description-input");
-const linkInputEl = document.querySelector("#card-link-input");
-const cardSubmitBtn = newPostModal.querySelector(".modal__button");
-const cardTemplate = document.querySelector("#card-template");
 
 function openModal(modal){
  modal.classList.add("modal_is-opened");
@@ -23,6 +19,11 @@ const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostForm = newPostModal.querySelector(".modal__form");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
+
+const captionInputEl = document.querySelector("#card-description-input");
+const linkInputEl = document.querySelector("#card-link-input");
+const cardSubmitBtn = newPostModal.querySelector(".modal__button");
+const cardTemplate = document.querySelector("#card-template");
 
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close_type_preview");
