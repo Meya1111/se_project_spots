@@ -148,7 +148,7 @@
   font-family: Poppins, Arial, Helvetica, sans-serif;
 }
 
-.modal__button_disabled {
+.modal__submit-btn_disabled {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;

@@ -1,4 +1,5 @@
-import {initialCards} from './cards.js';
+import { initialCards } from './cards.js';
+import { enableValidation, resetValidation, disableButton, settings } from './validation.js';
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -28,6 +29,7 @@ const cardTemplate = document.querySelector("#card-template");
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close_type_preview");
 const previewImageEl = previewModal.querySelector(".modal__image");
+const caption = previewModal.querySelector(".modal__caption");
 
 previewModalCloseBtn.addEventListener("click", () => {
 closeModal(previewModal);
@@ -38,6 +40,9 @@ const profileDescriptionEl = document.querySelector(".profile__description");
 function handleButtonClick() {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
+
+  resetValidation(editProfileForm, settings);
+
   openModal(editProfileModal);
 }
 editProfileBtn.addEventListener("click", handleButtonClick);
@@ -89,8 +94,8 @@ function getCardElement(data) {
 
   cardImageEl.addEventListener("click", () => {
     previewImageEl.src = data.link;
+    previewImageEl.alt = data.name;
 
-    const caption = document.querySelector(".modal__caption");
     caption.textContent = data.name;
   
     openModal(previewModal);
@@ -120,16 +125,6 @@ initialCards.forEach(function (item){
   const cardElement = getCardElement(item);
   cardsList.append(cardElement);
 });
-
-import { enableValidation } from './validation.js';
-const settings = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__submit-btn",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error"
-};
 
 enableValidation(settings);
 
