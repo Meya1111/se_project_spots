@@ -130,7 +130,7 @@ enableValidation(settings);
 
 document.querySelectorAll('.modal').forEach((modal) => {
 modal.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('modal')) {
+  if (evt.target === modal) {
     modal.classList.remove('modal_is-opened');
   }
  });

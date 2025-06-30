@@ -10,12 +10,14 @@ export const settings = {
 const showInputError = (formEl, inputEl, errorMsg, config) => {
     const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
     errorMsgEl.textContent = errorMsg;
+    errorMsgEl.classList.add(config.errorClass);
     inputEl.classList.add(config.inputErrorClass);
 };
 
 const hideInputError = (formEl, inputEl, config) => {
     const errorMsgEl = formEl.querySelector (`#${inputEl.id}-error`);
     errorMsgEl.textContent = "";
+    errorMsgEl.classList.remove(config.errorClass);
     inputEl.classList.remove(config.inputErrorClass);
 };
 
@@ -42,7 +44,7 @@ if (hasInvalidInput(inputList)) {
    }
 };
 
-const disableButton = (buttonEL, config) => {
+const disableButton = (buttonEl, config) => {
 buttonEl.disabled = true;
 buttonEl.classList.add(config.inactiveButtonClass);
 };
