@@ -128,3 +128,19 @@ initialCards.forEach(function (item){
 
 enableValidation(settings);
 
+document.querySelectorAll('.modal').forEach((modal) => {
+modal.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('modal')) {
+    modal.classList.remove('modal_is-opened');
+  }
+ });
+});
+
+document.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Escape') {
+document.querySelectorAll('.modal.modal_is-opened').forEach((modal) => {
+  modal.classList.remove('modal_is-opened');
+ });
+ }
+});
+
