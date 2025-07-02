@@ -74,10 +74,7 @@ const resetValidation = (formEl, config) => {
     const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
 
     inputList.forEach((inputEL) => {
-    const errorEL = formEl.querySelector(`#${inputEL.id}-error`);
-    errorEL.textContent ="",
-    inputEL.classList.remove(config.inputErrorClass);
-    errorEL.classList.remove(config.errorClass);
+    hideInputError(formEl, inputEL,config);
     });
 
     const buttonEL = formEl.querySelector(config.submitButtonSelector);

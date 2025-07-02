@@ -8,10 +8,6 @@ const editProfileForm = document.forms["edit-profile-form"];
 const editProfileNameInput = editProfileForm.elements["edit-profile-input"];
 const editProfileDescriptionInput = editProfileModal.querySelector( "#edit-profile-description");
 
-function openModal(modal){
- modal.classList.add("modal_is-opened");
-}
-
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
 }
@@ -131,16 +127,24 @@ enableValidation(settings);
 document.querySelectorAll('.modal').forEach((modal) => {
 modal.addEventListener('click', (evt) => {
   if (evt.target === modal) {
-    modal.classList.remove('modal_is-opened');
+    closeModal(modal);
   }
  });
 });
 
-document.addEventListener('keydown', (evt) => {
+function handleEscape(evt) {
   if (evt.key === 'Escape') {
-document.querySelectorAll('.modal.modal_is-opened').forEach((modal) => {
-  modal.classList.remove('modal_is-opened');
- });
+const openedModal = document.querySelector('.modal_is-opened');
+  closeModal(openedModal);
+  }
  }
-});
 
+ function openModal(modal) {
+  modal.classList.addEventListener('modal_is-opened');
+  document.addEventListener('keydown',handleEscape);
+ }
+
+ function closeModal(modal) {
+  modal.classList.remove('modal_is-opened');
+  document.removeEventListener('keydown', handleEscape);
+ }

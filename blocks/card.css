@@ -61,6 +61,7 @@
   background-color: transparent;
   border: none;
   outline: none;
+  background-repeat: no-repeat;
 }
 
 .card__like-btn_active:hover {
