@@ -136,7 +136,7 @@ const openedModal = document.querySelector('.modal_is-opened');
  }
 
  function openModal(modal) {
-  modal.classList.addEventListener('modal_is-opened');
+  modal.classList.add('modal_is-opened');
   document.addEventListener('keydown',handleEscape);
  }
 
