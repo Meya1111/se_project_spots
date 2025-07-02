@@ -8,10 +8,6 @@ const editProfileForm = document.forms["edit-profile-form"];
 const editProfileNameInput = editProfileForm.elements["edit-profile-input"];
 const editProfileDescriptionInput = editProfileModal.querySelector( "#edit-profile-description");
 
-function closeModal(modal) {
-  modal.classList.remove("modal_is-opened");
-}
-
 const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostForm = newPostModal.querySelector(".modal__form");
