@@ -44,6 +44,7 @@ editProfileCloseBtn.addEventListener("click", function () {
 });
 
 newPostBtn.addEventListener("click", function () {
+ resetValidation(newPostForm, settings);
  openModal(newPostModal);
 });
 
