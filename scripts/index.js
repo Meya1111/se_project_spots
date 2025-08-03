@@ -1,5 +1,14 @@
 import { initialCards } from './cards.js';
 import { enableValidation, resetValidation, disableButton, settings } from './validation.js';
+import Api from '../src/scripts/Api.js';
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "08c4fb0b-cb48-4031-b5a1-1ad178736ab8",
+    "Content-Type": "application/json"
+  }
+});
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -97,6 +106,13 @@ function getCardElement(data) {
   return cardElement;
 }
 
+api.getInitialCards().then((cards) =>{
+  cards.forEach((item) => {
+    const cardEl = getCardElement(item);
+    cardsList.append(cardEl);
+   });
+  });
+
 function handleNewPostSubmit(evt) { 
   evt.preventDefault();
   
@@ -145,3 +161,5 @@ const openedModal = document.querySelector('.modal_is-opened');
   modal.classList.remove('modal_is-opened');
   document.removeEventListener('keydown', handleEscape);
  }
+
+ export { getCardElement };
