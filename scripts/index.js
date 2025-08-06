@@ -1,4 +1,4 @@
-import { initialCards } from './cards.js';
+import { initialCards, createCard } from './cards.js';
 import { enableValidation, resetValidation, disableButton, settings } from './validation.js';
 import Api from '../src/scripts/Api.js';
 
@@ -7,7 +7,33 @@ const api = new Api({
   headers: {
     authorization: "08c4fb0b-cb48-4031-b5a1-1ad178736ab8",
     "Content-Type": "application/json"
-  }
+  },
+});
+
+// Destructure the second item in the callback of the .then() 
+
+const cardsContainer = document.querySelector('.cards__list');
+
+api
+.getInitialCards()
+.then((cards) => {
+  cards.forEach((item) => {
+    const cardEl = createCard(item);
+    cardsContainer.append(cardEl);
+  });
+})
+.catch((err) => {
+console.error(err);
+});
+
+api.getUserInfo()
+.then((data) => {
+  profileNameEl.textContent = data.name;
+  profileDescriptionEl.textContent = data.about;
+  profileAvatarEl.src = data.avatar;
+})
+.catch((err) => {
+console.error(err);
 });
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
@@ -16,6 +42,7 @@ const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 const editProfileForm = document.forms["edit-profile-form"];
 const editProfileNameInput = editProfileForm.elements["edit-profile-input"];
 const editProfileDescriptionInput = editProfileModal.querySelector( "#edit-profile-description");
+const profileAvatarEl = document.querySelector(".profile__avatar");
 
 const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
@@ -63,6 +90,14 @@ newPostCloseBtn.addEventListener("click", function () {
 
 function handledEditProfileSubmit(evt) {
   evt.preventDefault();
+  api 
+ .editUserInfo({ name: editProfileNameInput.value, about: editProfileDescriptionInput.value })
+ .then((data) => {
+ profileNameEl.textContent = data.name;
+ profileDescriptionEl.textContent = data.about;
+ editProfileModal.classList.remove("modal_is-opened");   
+ })
+ .catch(console.error);
   
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;

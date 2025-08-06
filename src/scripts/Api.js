@@ -1,20 +1,52 @@
-// utils/Api.js
-
 class Api {
-    constructor(options) {
-      // constructor body
+    constructor({ baseUrl, headers }) {
+      this._baseUrl = baseUrl;
+      this._headers = headers;
     }
-  
+
+     getAppInfo() {
+      return Promise.all([this.getInitialCards(), this.getUserInfo()]);  
+     }
+
     getInitialCards() {
-       return fetch("https://around-api.en.tripleten-services.com/v1/cards", {
-            headers: {
-              authorization: "08c4fb0b-cb48-4031-b5a1-1ad178736ab8"
-            }
-          })
-            .then(res => res.json())
+       return fetch(`${this._baseUrl}/cards` , {
+            headers: this._headers,  
+         }) .then((res) => {
+            if (res.ok) {
+            return res.json();
     }
-  
-    // other methods for working with the API
+    Promise.reject(`Error: ${res.status}`);
+ });
+} 
+
+getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers,  
+    })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }  
+      return Promise.reject(`Error: ${res.status}`);
+    });
+}
+
+editUserInfo({ name, about }) {
+    return fetch(`${this._baseUrl}/users/me`, {
+       method: "PATCH",
+       headers: this._headers,
+       // Send the data in the body as a JSON string.
+       body: JSON.stringify({
+         name,
+         about,
+       }),
+     }).then((res) => {
+       if (res.ok) {
+        return res.json();
+       }
+       Promise.reject(`Error: ${res.status}`);
+     });   
+   }
   }
 
   export default Api;
