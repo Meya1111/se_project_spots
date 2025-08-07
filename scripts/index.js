@@ -36,6 +36,12 @@ api.getUserInfo()
 console.error(err);
 });
 
+// TODO - FINISH AVATAR SUBMISSION HANDLER
+function handleAvatarSubmit(evt) {
+  // prevent behavior
+  //todo - call api.editAvatarUserInfo
+}
+
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
@@ -43,6 +49,7 @@ const editProfileForm = document.forms["edit-profile-form"];
 const editProfileNameInput = editProfileForm.elements["edit-profile-input"];
 const editProfileDescriptionInput = editProfileModal.querySelector( "#edit-profile-description");
 const profileAvatarEl = document.querySelector(".profile__avatar");
+const avatarModalBtn = document.querySelector(".profile__avatar-btn")
 
 const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
@@ -53,6 +60,12 @@ const captionInputEl = document.querySelector("#card-description-input");
 const linkInputEl = document.querySelector("#card-link-input");
 const cardSubmitBtn = newPostModal.querySelector(".modal__button");
 const cardTemplate = document.querySelector("#card-template");
+
+const avatarModal = document.querySelector("#avatar-modal");
+const avatarForm = avatarModal.querySelector(".modal__form");
+const avatarSubmitBtn = avatarModal.querySelector(".modal__button");
+const avatarModalCloseBtn = avatarModal.querySelector(".modal__close");
+const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close_type_preview");
@@ -140,6 +153,12 @@ function getCardElement(data) {
 
   return cardElement;
 }
+
+avatarForm.addEventListener("submit", handleAvatarSubmit);
+
+avatarModalBtn.addEventListener("click", () => {
+openModal(avatarModal);
+});
 
 api.getInitialCards().then((cards) =>{
   cards.forEach((item) => {
