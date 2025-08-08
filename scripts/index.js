@@ -39,7 +39,12 @@ console.error(err);
 // TODO - FINISH AVATAR SUBMISSION HANDLER
 function handleAvatarSubmit(evt) {
   // prevent behavior
-  //todo - call api.editAvatarUserInfo
+  api
+  .editAvatarInfo(avatarInput.value)
+  .then((data) => {
+  // TODO - make this work
+  })
+  .catch(console.error);
 }
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
