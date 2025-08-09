@@ -10,31 +10,20 @@ const api = new Api({
   },
 });
 
-// Destructure the second item in the callback of the .then() 
-
 const cardsContainer = document.querySelector('.cards__list');
 
-api
-.getInitialCards()
-.then((cards) => {
+api.getAppInfo()
+.then(([cards, user]) => {
   cards.forEach((item) => {
     const cardEl = createCard(item);
     cardsContainer.append(cardEl);
   });
-})
-.catch((err) => {
-console.error(err);
-});
 
-api.getUserInfo()
-.then((data) => {
-  profileNameEl.textContent = data.name;
-  profileDescriptionEl.textContent = data.about;
-  profileAvatarEl.src = data.avatar;
+  profileNameEl.textContent = user.name;
+  profileDescriptionEl.textContent = user.about;
+  profileAvatarEl.src = user.avatar;
 })
-.catch((err) => {
-console.error(err);
-});
+.catch(console.error);
 
 function handleAvatarSubmit(evt) {
   evt.preventDefault();

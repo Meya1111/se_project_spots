@@ -135,7 +135,7 @@
         <button
           aria-label="Close modal"
           type="button"
-          class="modal__close_type_preview"
+          class="modal__close modal__close_type_preview"
         ></button>
         <div class="modal__image-wrapper">
         <img src="./images/closebutton.svg" alt="Close" class="modal__image" />
@@ -143,7 +143,6 @@
         </div>
       </div>
     </div>
-    
     <div class="modal" id="avatar-modal">
       <div class="modal__container">
         <button type="button"
@@ -166,10 +165,39 @@
             />
             <span id="profile-avatar-input-error" class="modal__error"></span>
           </label>
-          <div>
-        </div>
-         
-    <script type="module" src="./scripts/validation.js"></script>
-    <script type="module" src="./scripts/index.js"></script>
+          <button type="submit" class="modal__submit-btn">Save</button>
+        </form>
+       <div>
+       </div>   
+    </div>
+    <button
+    aria-label="Close modal"
+    type="button"
+    class="modal__close_type_preview"
+  ></button>
+  <div class="modal__image-wrapper">
+  <img src="./images/closebutton.svg" alt="Close" class="modal__image" />
+  <p class="modal__caption"></p>
+  </div>
+ </div>
+</div>
+<div class="modal" id="delete-modal">
+<div class="modal__content">
+  <button 
+  aria-label="Close modal"
+   class="modal__close"
+   type="button"
+   ></button>
+  <h3 class="modal__title">
+   Are you sure you want to delete this image? 
+  </h3>
+  <form class="modal__form" id="delete-form" novalidate>
+  <button class="modal__button" type="button">Cancel</button> 
+</form>
+</div>
+</div>
+</div>
+<script type="module" src="./scripts/validation.js"></script>
+ <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>
