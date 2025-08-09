@@ -138,8 +138,16 @@ function handledEditProfileSubmit(evt) {
 
 editProfileForm.addEventListener("submit", handledEditProfileSubmit);
 
-function handleLike(evt) {
-  evt.target.classList.toggle("card__like-button_active");
+function handleLike(evt, id) {
+const btn = evt.currentTarget;
+const isLiked = btn.classList.contains('card_like-btn_active');
+
+api.changeLikeStatus(id, !isLiked)
+.then((updatedCard) => {
+  const linkedByMe = updatedCard.likes?.some(u => u._id == currentUserId);
+  btn.classList.toggle('card_like-btn_active', linkedByMe)
+})
+.catch(console.error);
 }
  const cardsList = document.querySelector(".cards__list")
 
@@ -148,6 +156,10 @@ function getCardElement(data) {
   const cardImageEl = cardElement.querySelector(".card__image");
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
+
+  if (data.likes?.some(u => u._id == currentUserId)) {
+    cardElement.querySelector('.card_like-btn').classList.add('card_like-btn_active');
+  }
   
  const cardTitleEl = cardElement.querySelector(".card__title");
   cardTitleEl.textContent = data.name;
