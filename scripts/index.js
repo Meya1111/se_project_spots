@@ -36,13 +36,14 @@ api.getUserInfo()
 console.error(err);
 });
 
-// TODO - FINISH AVATAR SUBMISSION HANDLER
 function handleAvatarSubmit(evt) {
-  // prevent behavior
-  api
-  .editAvatarInfo(avatarInput.value)
+  evt.preventDefault();
+
+  api.editAvatarInfo({ avatar: avatarInput.value })
   .then((data) => {
-  // TODO - make this work
+  profileAvatarEl.src = data.avatar;
+  editAvatarForm.reset();
+  closeModal(avatarModal);
   })
   .catch(console.error);
 }

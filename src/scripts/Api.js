@@ -9,13 +9,13 @@ class Api {
      }
 
     getInitialCards() {
-       return fetch(`${this._baseUrl}/cards` , {
-            headers: this._headers,  
-         }) .then((res) => {
-            if (res.ok) {
-            return res.json();
-    }
-    Promise.reject(`Error: ${res.status}`);
+      return fetch(`${this._baseUrl}/cards`, {
+       headers: this._headers,  
+        }).then((res) => {
+         if (res.ok) {
+         return res.json();    
+         }
+        return Promise.reject(`Error: ${res.status}`);
  });
 } 
 
@@ -28,14 +28,13 @@ getUserInfo() {
         return res.json();
       }  
       return Promise.reject(`Error: ${res.status}`);
-    });
+    })
 }
 
-editUserInfo({ name, about }) {
+editUserInfo({name, about}) {
     return fetch(`${this._baseUrl}/users/me`, {
        method: "PATCH",
        headers: this._headers,
-       // Send the data in the body as a JSON string.
        body: JSON.stringify({
          name,
          about,
@@ -44,26 +43,22 @@ editUserInfo({ name, about }) {
        if (res.ok) {
         return res.json();
        }
-       Promise.reject(`Error: ${res.status}`);
+      return Promise.reject(`Error: ${res.status}`);
      });   
    }
-  }
 
   editAvatarInfo({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
        method: "PATCH",
        headers: this._headers,
        body: JSON.stringify({
-        avatar,
-       }),
+        avatar}),
      }).then((res) => {
-       if (res.ok) {
-        return res.json();
-       }
-       Promise.reject(`Error: ${res.status}`);
-     });   
-   }
-
-
+        if (res.ok) {
+            return res.json();
+        }
+          return Promise.reject(`Error: ${res.status}`);
+         });   
+     }
+}  
   export default Api;
-  
