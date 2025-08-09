@@ -25,6 +25,24 @@ api.getAppInfo()
 })
 .catch(console.error);
 
+function handleDeleteSubmit(evt) {
+  evt.preventDefault();
+  api
+  .deleteCard(selectedCardId)
+  .then(() => {
+    //TODO
+    // remove the card from DOM
+    // close the modal
+  })
+  .catch(console.error);
+}
+
+function handleDeleteCard(cardElement, cardId) {
+  selectedCard = cardElement;
+  selectedCardId = cardId;
+  openModal(deleteModal);
+}
+
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
 
@@ -54,13 +72,19 @@ const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const captionInputEl = document.querySelector("#card-description-input");
 const linkInputEl = document.querySelector("#card-link-input");
 const cardSubmitBtn = newPostModal.querySelector(".modal__button");
+const cardList = document.querySelector(".cards__list");
 const cardTemplate = document.querySelector("#card-template");
+
+let selectedCard, selectedCardId;
 
 const avatarModal = document.querySelector("#avatar-modal");
 const avatarForm = avatarModal.querySelector(".modal__form");
 const avatarSubmitBtn = avatarModal.querySelector(".modal__button");
 const avatarModalCloseBtn = avatarModal.querySelector(".modal__close");
 const avatarInput = avatarModal.querySelector("#profile-avatar-input");
+
+const deleteModal = document.querySelector("#delete-modal");
+const deleteForm = deleteModal.querySelector(".modal__form");
 
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close_type_preview");
@@ -114,6 +138,9 @@ function handledEditProfileSubmit(evt) {
 
 editProfileForm.addEventListener("submit", handledEditProfileSubmit);
 
+function handleLike(evt) {
+  evt.target.classList.toggle("card__like-button_active");
+}
  const cardsList = document.querySelector(".cards__list")
 
 function getCardElement(data) {
@@ -164,7 +191,11 @@ api.getInitialCards().then((cards) =>{
 
 function handleNewPostSubmit(evt) { 
   evt.preventDefault();
-  
+
+  avatarForm.addEventListener("submit", handleDeleteSubmit);
+ 
+ deleteForm.addEventListener("submit", handleDeleteSubmit);
+
   const cardElement = getCardElement({
     name: captionInputEl.value,
     link: linkInputEl.value,
