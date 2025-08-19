@@ -1,9 +1,6 @@
-import './index.css';
-import '../scripts/validation.js';
-
-import { initialCards, createCard } from './cards.js';
-import { enableValidation, resetValidation, disableButton, settings } from './validation.js';
-import Api from '../src/scripts/Api.js';
+import { enableValidation, resetValidation, disableButton, settings } from '../scripts/validation.js';
+import { initialCards, createCard } from '../scripts/cards.js';
+import Api from '../scripts/Api.js';
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",

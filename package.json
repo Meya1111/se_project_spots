@@ -18,5 +18,18 @@
   "bugs": {
     "url": "https://github.com/Meya1111/se_project_spots/issues"
   },
-  "homepage": "https://github.com/Meya1111/se_project_spots#readme"
+  "homepage": "https://github.com/Meya1111/se_project_spots#readme",
+  "devDependencies": {
+    "@babel/core": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
+    "autoprefixer": "^10.4.21",
+    "babel-loader": "^10.0.0",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.4",
+    "postcss-loader": "^8.1.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  }
 }
