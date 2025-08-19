@@ -1,0 +1,22 @@
+{
+  "name": "se_project_spots",
+  "version": "1.0.0",
+  "description": "This project is created using different elements in my html and css. Working with these properties helped display a finished product on how a webpage should look.",
+  "main": "webpack.config.js",
+  "scripts": {
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "start": "npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Meya1111/se_project_spots.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Meya1111/se_project_spots/issues"
+  },
+  "homepage": "https://github.com/Meya1111/se_project_spots#readme"
+}
