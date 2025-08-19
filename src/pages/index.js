@@ -1,3 +1,6 @@
+import './index.css';
+import '../scripts/validation.js';
+
 import { initialCards, createCard } from './cards.js';
 import { enableValidation, resetValidation, disableButton, settings } from './validation.js';
 import Api from '../src/scripts/Api.js';
@@ -30,9 +33,8 @@ function handleDeleteSubmit(evt) {
   api
   .deleteCard(selectedCardId)
   .then(() => {
-    //TODO
-    // remove the card from DOM
-    // close the modal
+   selectedCard.remove();
+   closeModal(deleteModal);
   })
   .catch(console.error);
 }
@@ -122,6 +124,8 @@ newPostCloseBtn.addEventListener("click", function () {
 
 function handledEditProfileSubmit(evt) {
   evt.preventDefault();
+const btn = evt.submitter;
+setButtonLoading(btn, true);
   api 
  .editUserInfo({ name: editProfileNameInput.value, about: editProfileDescriptionInput.value })
  .then((data) => {
@@ -129,8 +133,14 @@ function handledEditProfileSubmit(evt) {
  profileDescriptionEl.textContent = data.about;
  editProfileModal.classList.remove("modal_is-opened");   
  })
- .catch(console.error);
-  
+ .catch(console.error)
+ .finally(() => setButtonLoading(btn, false));
+
+function setButtonLoading(btn, isLoading, defaultText = "Save", loadingText = "Saving...") {
+  btn.textContent = isLoading ? loadingText : defaultText;
+  btn.disabled = isLoading;
+}
+
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
   editProfileModal.classList.remove("modal_is-opened");
