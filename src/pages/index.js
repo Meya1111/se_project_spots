@@ -19,6 +19,30 @@ api.getAppInfo()
     cardsContainer.append(cardEl);
   });
 
+const newPostModal = document.querySelector("#new-post-modal");
+const newPostForm = document.querySelector("#new-post-form");
+const linkInput = document.querySelector("#card-link-input");
+const descInput = document.querySelector("#card-description-input");
+
+function handleNewPostSubmit(evt) {
+  evt.preventDefault();
+
+  const name = descInput.value.trim();
+  const link = linkInput.value.trim();
+
+  api
+    .addCard({ name, link })
+    .then((card) => {
+      const cardEl = createCard(card);  
+      cardsContainer.prepend(cardEl);   
+      newPostForm.reset();
+      resetValidation(newPostForm, settings);
+    })
+    .catch(console.error);
+}
+
+newPostForm.addEventListener("submit", handleNewPostSubmit);
+
   profileNameEl.textContent = user.name;
   profileDescriptionEl.textContent = user.about;
   profileAvatarEl.src = user.avatar;
@@ -210,10 +234,6 @@ api.getInitialCards().then((cards) =>{
 
 function handleNewPostSubmit(evt) { 
   evt.preventDefault();
-
-  avatarForm.addEventListener("submit", handleDeleteSubmit);
- 
- deleteForm.addEventListener("submit", handleDeleteSubmit);
 
   const cardElement = getCardElement({
     name: captionInputEl.value,
