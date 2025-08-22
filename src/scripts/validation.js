@@ -51,7 +51,7 @@ buttonEl.classList.add(config.inactiveButtonClass);
  
 const setEventListeners = (formEl, config) => {
     const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
-    const buttonElement = document.querySelector(config.submitButtonSelector);
+    const buttonElement = formEl.querySelector(config.submitButtonSelector);
 
     toggleButtonState(inputList, buttonElement, config);
 
