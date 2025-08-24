@@ -1,4 +1,4 @@
-import "./index.css";
+import './index.css';
 import { enableValidation, resetValidation, disableButton, settings } from '../scripts/validation.js';
 import { getCardElement } from '../scripts/cards.js';
 import Api from '../scripts/Api.js';
@@ -182,18 +182,6 @@ api.changeLikeStatus(id, !isLiked)
 .catch(console.error);
 }
  const cardsList = document.querySelector(".cards__list")
-
-function getCardElement(data) {
-  let cardElement = cardTemplate.content.cloneNode(true);
-  const cardImageEl = cardElement.querySelector(".card__image");
-  cardImageEl.src = data.link;
-  cardImageEl.alt = data.name;
-
-  if (data.isLiked) {
-    cardElement
-      .querySelector(".card__like-btn")        
-      .classList.add("card__like-btn_active"); 
-  }
   
  const cardTitleEl = cardElement.querySelector(".card__title");
   cardTitleEl.textContent = data.name;
