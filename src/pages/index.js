@@ -210,7 +210,6 @@ api.changeLikeStatus(id, !isLiked)
   });
 
   return cardElement;
-}
 
 avatarForm.addEventListener("submit", handleAvatarSubmit);
 
