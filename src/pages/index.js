@@ -5,7 +5,7 @@ import {
   disableButton,
   settings,
 } from "../scripts/validation.js";
-//import { getCardElement } from "../scripts/cards.js";
+
 import Api from "../scripts/Api.js";
 
 const api = new Api({
