@@ -1,12 +1,11 @@
-import "../index.css";
 import {
   enableValidation,
   resetValidation,
   disableButton,
   settings,
-} from "../scripts/validation.js";
+} from "./scripts/validation.js";
 
-import Api from "../scripts/Api.js";
+import Api from "./scripts/Api.js";
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -23,6 +22,7 @@ api
   .then(([cards, user]) => {
     cards.forEach((item) => {
       const cardEl = createCard(item);
+      const cardElement = cardEl;
       cardsContainer.append(cardEl);
     });
 
