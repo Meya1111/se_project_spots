@@ -1,11 +1,12 @@
+import "./index.css"
 import {
   enableValidation,
   resetValidation,
   disableButton,
   settings,
-} from "./scripts/validation.js";
+} from "../scripts/validation.js";
 
-import Api from "./scripts/Api.js";
+import Api from "../scripts/Api.js";
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -17,44 +18,8 @@ const api = new Api({
 
 const cardsContainer = document.querySelector(".cards__list");
 
-api
-  .getAppInfo()
-  .then(([cards, user]) => {
-    cards.forEach((item) => {
-      const cardEl = createCard(item);
-      const cardElement = cardEl;
-      cardsContainer.append(cardEl);
-    });
-
-    const newPostModal = document.querySelector("#new-post-modal");
-    const newPostForm = document.querySelector("#new-post-form");
     const linkInput = document.querySelector("#card-link-input");
     const descInput = document.querySelector("#card-description-input");
-
-    function handleNewPostSubmit(evt) {
-      evt.preventDefault();
-
-      const name = descInput.value.trim();
-      const link = linkInput.value.trim();
-
-      api
-        .addCard({ name, link })
-        .then((card) => {
-          const cardEl = createCard(card);
-          cardsContainer.prepend(cardEl);
-          newPostForm.reset();
-          resetValidation(newPostForm, settings);
-        })
-        .catch(console.error);
-    }
-
-    newPostForm.addEventListener("submit", handleNewPostSubmit);
-
-    profileNameEl.textContent = user.name;
-    profileDescriptionEl.textContent = user.about;
-    profileAvatarEl.src = user.avatar;
-  })
-  .catch(console.error);
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
@@ -155,6 +120,58 @@ newPostCloseBtn.addEventListener("click", function () {
   closeModal(newPostModal);
 });
 
+
+function createCard(cardData) {
+  const cardTemplate = document.querySelector("#card-template").content;
+  const cardElement = cardTemplate.cloneNode(true);
+
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
+
+  cardImage.src = cardData.link;
+  cardImage.alt = cardData.name;
+  cardTitle.textContent = cardData.name;
+  
+  const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
+  
+  cardLikeBtnEl.addEventListener("click", (evt) => {
+    handleLike(evt, cardData._id);
+  });
+  
+  const cardDeleteBtnEl = cardElement.querySelector(".card__delete-button");
+  cardDeleteBtnEl.addEventListener("click", () => {
+    handleDeleteCard({
+      cardId: cardData._id,
+      cardEl: cardElement,
+    });
+  });
+  
+  cardImage.addEventListener("click", () => {
+    previewImageEl.src = data.link;
+    previewImageEl.alt = data.name;
+  
+    caption.textContent = data.name;
+  
+    openModal(previewModal);
+  });
+  
+
+  return cardElement;
+}
+
+api
+  .getAppInfo()
+  .then(([cards, user]) => {
+    cards.forEach((item) => {
+      const cardEl = createCard(item);
+      const cardElement = cardEl;
+      cardsContainer.append(cardEl);
+      profileNameEl.textContent = user.name;
+      profileDescriptionEl.textContent = user.about;
+      profileAvatarEl.src = user.avatar;
+    });
+  })
+
 function handledEditProfileSubmit(evt) {
   evt.preventDefault();
   const btn = evt.submitter;
@@ -203,32 +220,6 @@ function handleLike(evt, id) {
 }
 const cardsList = document.querySelector(".cards__list");
 
-const cardTitleEl = cardElement.querySelector(".card__title");
-cardTitleEl.textContent = data.name;
-
-const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
-
-cardLikeBtnEl.addEventListener("click", (evt) => {
-  handleLike(evt, data._id);
-});
-
-const cardDeleteBtnEl = cardElement.querySelector(".card__delete-button");
-cardDeleteBtnEl.addEventListener("click", () => {
-  handleDeleteCard({
-    cardId: data._id,
-    cardEl: cardElement,
-  });
-});
-
-cardImageEl.addEventListener("click", () => {
-  previewImageEl.src = data.link;
-  previewImageEl.alt = data.name;
-
-  caption.textContent = data.name;
-
-  openModal(previewModal);
-});
-
 // return cardElement;
 
 avatarForm.addEventListener("submit", handleAvatarSubmit);
@@ -246,7 +237,7 @@ function handleNewPostSubmit(evt) {
   api
     .addCard({ name, link })
     .then((newCard) => {
-      const cardEl = getCardElement(newCard);
+      const cardEl = createCard(newCard);
       cardsList.prepend(cardEl);
 
       newPostForm.reset();

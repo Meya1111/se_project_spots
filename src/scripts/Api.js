@@ -14,13 +14,13 @@ class Api {
      }
 
      getInitialCards() {
-      return fetch(`${this._baseurl}/cards`, {
+      return fetch(`${this._baseUrl}/cards`, {
         headers: this._headers,
       }).then(this._checkResponse);
     }
 
     getUserInfo() {
-      return fetch(`${this._baseurl}/users/me`, {
+      return fetch(`${this._baseUrl}/users/me`, {
         headers: this._headers,
       }).then(this._checkResponse);
     }
