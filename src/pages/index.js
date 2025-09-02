@@ -5,7 +5,7 @@ import {
   disableButton,
   settings,
 } from "../scripts/validation.js";
-
+import closeIconLight from "../images/Closeicon.svg"
 import Api from "../scripts/Api.js";
 
 const api = new Api({
@@ -20,23 +20,6 @@ const cardsContainer = document.querySelector(".cards__list");
 
     const linkInput = document.querySelector("#card-link-input");
     const descInput = document.querySelector("#card-description-input");
-
-function handleDeleteSubmit(evt) {
-  evt.preventDefault();
-  api
-    .deleteCard(selectedCardId)
-    .then(() => {
-      selectedCard.remove();
-      closeModal(deleteModal);
-    })
-    .catch(console.error);
-}
-
-function handleDeleteCard(cardElement, cardId) {
-  selectedCard = cardElement;
-  selectedCardId = cardId;
-  openModal(deleteModal);
-}
 
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
@@ -82,7 +65,8 @@ const avatarModalCloseBtn = avatarModal.querySelector(".modal__close");
 const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
 const deleteModal = document.querySelector("#delete-modal");
-const deleteForm = deleteModal.querySelector(".modal__form");
+const deleteForm = deleteModal.querySelector(".modal__delete-form");
+const deleteConfirm = deleteForm.querySelector(".modal__submit-btn__type_delete");
 
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(
@@ -105,6 +89,17 @@ function handleButtonClick() {
 
   openModal(editProfileModal);
 }
+
+const setLoadingState = (element, message) =>  {
+  element.textContent = message 
+  element.disabled = true 
+}
+
+const disableLoadingState = (element, message) => {
+  element.textContent = message
+  element.disabled = false
+}
+
 editProfileBtn.addEventListener("click", handleButtonClick);
 
 editProfileCloseBtn.addEventListener("click", function () {
@@ -120,10 +115,19 @@ newPostCloseBtn.addEventListener("click", function () {
   closeModal(newPostModal);
 });
 
+function setButtonLoading(
+  btn,
+  isLoading,
+  defaultText = "Save",
+  loadingText = "Saving..."
+) {
+  btn.textContent = isLoading ? loadingText : defaultText;
+  btn.disabled = isLoading;
+}
 
 function createCard(cardData) {
   const cardTemplate = document.querySelector("#card-template").content;
-  const cardElement = cardTemplate.cloneNode(true);
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
 
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
@@ -140,10 +144,7 @@ function createCard(cardData) {
   
   const cardDeleteBtnEl = cardElement.querySelector(".card__delete-button");
   cardDeleteBtnEl.addEventListener("click", () => {
-    handleDeleteCard({
-      cardId: cardData._id,
-      cardEl: cardElement,
-    });
+    handleDeleteCard(cardElement, cardData._id);
   });
   
   cardImage.addEventListener("click", () => {
@@ -158,6 +159,27 @@ function createCard(cardData) {
 
   return cardElement;
 }
+function handleDeleteSubmit(evt) {
+  evt.preventDefault();
+  setButtonLoading(deleteConfirm, true, "Delete", "Deleting...")
+  api
+    .deleteCard(selectedCardId)
+    .then(() => {
+      selectedCard.remove();
+      closeModal(deleteModal);
+    })
+    .catch(console.error)
+    .finally(() => setButtonLoading(deleteConfirm, false, "Delete", "Deleting..."))
+
+}
+
+function handleDeleteCard(cardElement, cardId) {
+  selectedCard = cardElement;
+  selectedCardId = cardId;
+  openModal(deleteModal);
+}
+
+deleteForm.addEventListener("submit", handleDeleteSubmit)
 
 api
   .getAppInfo()
@@ -188,16 +210,6 @@ function handledEditProfileSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => setButtonLoading(btn, false));
-
-  function setButtonLoading(
-    btn,
-    isLoading,
-    defaultText = "Save",
-    loadingText = "Saving..."
-  ) {
-    btn.textContent = isLoading ? loadingText : defaultText;
-    btn.disabled = isLoading;
-  }
 
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
