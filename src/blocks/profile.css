@@ -16,7 +16,6 @@
  align-items: flex-end;
  justify-content: center;
  visibility: hidden;
- /* TODO - finish avatar button styles */
 }
 
 .profile__avatar-container:hover.profile__avatar-btn {
@@ -65,18 +64,20 @@
   max-width: 420px;
 }
 
-.profile__edit-btn {
+.profile__edit-btn{
   margin-top: auto;
+  display: inline-flex;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 90px;
+  background-color: rgba(33,33,33,0.08);
   color: #212121;
   font-size: 16px;
   line-height: 100%;
   font-weight: 500;
-  background-color: transparent;
-  border: none;
-  display: flex;
-  gap: 8px;
-  opacity: 70%;
-}
+  opacity: .7;
+  }
 
 .profile__edit-btn:hover {
   opacity: 1;

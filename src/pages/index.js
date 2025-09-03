@@ -1,11 +1,11 @@
-import "./index.css"
+import "./index.css";
 import {
   enableValidation,
   resetValidation,
   disableButton,
   settings,
 } from "../scripts/validation.js";
-import closeIconLight from "../images/Closeicon.svg"
+import closeIconLight from "../images/Closeicon.svg";
 import Api from "../scripts/Api.js";
 
 const api = new Api({
@@ -18,8 +18,8 @@ const api = new Api({
 
 const cardsContainer = document.querySelector(".cards__list");
 
-    const linkInput = document.querySelector("#card-link-input");
-    const descInput = document.querySelector("#card-description-input");
+const linkInput = document.querySelector("#card-link-input");
+const descInput = document.querySelector("#card-description-input");
 
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
@@ -66,7 +66,13 @@ const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
 const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = deleteModal.querySelector(".modal__delete-form");
-const deleteConfirm = deleteForm.querySelector(".modal__submit-btn__type_delete");
+const deleteConfirm = deleteForm.querySelector(
+  ".modal__submit-btn__type_delete"
+);
+const deleteCancelBtn = deleteForm.querySelector(
+  ".modal__submit-btn__type_cancel"
+);
+const deleteCloseBtn = deleteModal.querySelector(".modal__close_type_preview");
 
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(
@@ -90,15 +96,15 @@ function handleButtonClick() {
   openModal(editProfileModal);
 }
 
-const setLoadingState = (element, message) =>  {
-  element.textContent = message 
-  element.disabled = true 
-}
+const setLoadingState = (element, message) => {
+  element.textContent = message;
+  element.disabled = true;
+};
 
 const disableLoadingState = (element, message) => {
-  element.textContent = message
-  element.disabled = false
-}
+  element.textContent = message;
+  element.disabled = false;
+};
 
 editProfileBtn.addEventListener("click", handleButtonClick);
 
@@ -135,33 +141,42 @@ function createCard(cardData) {
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;
   cardTitle.textContent = cardData.name;
-  
+
   const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
-  
+  if (cardData.isLiked) {
+    cardLikeBtnEl.classList.add("card__like-btn_active");
+  }
+
   cardLikeBtnEl.addEventListener("click", (evt) => {
-    handleLike(evt, cardData._id);
+    const isLiked = cardLikeBtnEl.classList.contains("card__like-btn_active");
+
+    api
+      .changeLikeStatus(cardData._id, isLiked)
+      .then((updatedCard) => {
+        cardLikeBtnEl.classList.toggle("card__like-btn_active", updatedCard.isLiked);
+      })
+      .catch(console.error);
   });
-  
+
   const cardDeleteBtnEl = cardElement.querySelector(".card__delete-button");
   cardDeleteBtnEl.addEventListener("click", () => {
     handleDeleteCard(cardElement, cardData._id);
   });
-  
+
   cardImage.addEventListener("click", () => {
     previewImageEl.src = data.link;
     previewImageEl.alt = data.name;
-  
+
     caption.textContent = data.name;
-  
+
     openModal(previewModal);
   });
-  
 
   return cardElement;
 }
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
-  setButtonLoading(deleteConfirm, true, "Delete", "Deleting...")
+  setButtonLoading(deleteConfirm, true, "Delete", "Deleting...");
   api
     .deleteCard(selectedCardId)
     .then(() => {
@@ -169,8 +184,9 @@ function handleDeleteSubmit(evt) {
       closeModal(deleteModal);
     })
     .catch(console.error)
-    .finally(() => setButtonLoading(deleteConfirm, false, "Delete", "Deleting..."))
-
+    .finally(() =>
+      setButtonLoading(deleteConfirm, false, "Delete", "Deleting...")
+    );
 }
 
 function handleDeleteCard(cardElement, cardId) {
@@ -179,20 +195,22 @@ function handleDeleteCard(cardElement, cardId) {
   openModal(deleteModal);
 }
 
-deleteForm.addEventListener("submit", handleDeleteSubmit)
+deleteForm.addEventListener("submit", handleDeleteSubmit);
 
-api
-  .getAppInfo()
-  .then(([cards, user]) => {
-    cards.forEach((item) => {
-      const cardEl = createCard(item);
-      const cardElement = cardEl;
-      cardsContainer.append(cardEl);
-      profileNameEl.textContent = user.name;
-      profileDescriptionEl.textContent = user.about;
-      profileAvatarEl.src = user.avatar;
-    });
-  })
+deleteCancelBtn.addEventListener("click", () => closeModal(deleteModal));
+
+deleteCloseBtn.addEventListener("click", () => closeModal(deleteModal));
+
+api.getAppInfo().then(([cards, user]) => {
+  cards.forEach((item) => {
+    const cardEl = createCard(item);
+    const cardElement = cardEl;
+    cardsContainer.append(cardEl);
+    profileNameEl.textContent = user.name;
+    profileDescriptionEl.textContent = user.about;
+    profileAvatarEl.src = user.avatar;
+  });
+});
 
 function handledEditProfileSubmit(evt) {
   evt.preventDefault();
@@ -220,15 +238,6 @@ editProfileForm.addEventListener("submit", handledEditProfileSubmit);
 
 function handleLike(evt, id) {
   const btn = evt.currentTarget;
-  const isLiked = btn.classList.contains("card__like-btn_active");
-
-  api
-    .changeLikeStatus(id, !isLiked)
-    .then((updatedCard) => {
-      const linkedByMe = updatedCard.likes?.some((u) => u._id == currentUserId);
-      btn.classList.toggle("card__like-btn_active", linkedByMe);
-    })
-    .catch(console.error);
 }
 const cardsList = document.querySelector(".cards__list");
 
@@ -242,6 +251,8 @@ avatarModalBtn.addEventListener("click", () => {
 
 function handleNewPostSubmit(evt) {
   evt.preventDefault();
+  const postSubmitBtn = newPostForm.querySelector(".modal__submit-btn")
+  setButtonLoading(postSubmitBtn, "Save", "Saving...")
 
   const name = captionInputEl.value;
   const link = linkInputEl.value;
@@ -258,7 +269,10 @@ function handleNewPostSubmit(evt) {
     })
     .catch((err) => {
       console.log("Error creating card:", err);
-    });
+    })
+.finally(()=>{
+  setButtonLoading(postSubmitBtn, "Save")
+})
 }
 newPostForm.addEventListener("submit", handleNewPostSubmit);
 
