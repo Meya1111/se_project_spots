@@ -6,6 +6,8 @@ import {
   settings,
 } from "../scripts/validation.js";
 import closeIconLight from "../images/Closeicon.svg";
+import pencilIcon from "../images/pencil.svg";
+import plusIcon from "../images/plus.svg";
 import Api from "../scripts/Api.js";
 
 const api = new Api({
@@ -55,6 +57,18 @@ const linkInputEl = document.querySelector("#card-link-input");
 const cardSubmitBtn = newPostModal.querySelector(".modal__button");
 const cardList = document.querySelector(".cards__list");
 const cardTemplate = document.querySelector("#card-template");
+
+const pencilImg = document.createElement("img");
+pencilImg.src = pencilIcon;
+pencilImg.alt = "Edit Profile";
+pencilImg.classList.add("btn-icon");
+editProfileBtn.prepend(pencilImg);
+
+const plusImg = document.createElement("img");
+plusImg.src = plusIcon;
+plusImg.alt = "New Post";
+plusImg.classList.add("btn-icon");
+newPostBtn.prepend(plusImg);
 
 let selectedCard, selectedCardId;
 
