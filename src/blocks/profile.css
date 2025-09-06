@@ -1,8 +1,13 @@
 .profile {
-  display: flex;
-  padding: 34px 0 20px;
-  border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
+  display: grid;
+  grid-template-columns: 168px 1fr auto; 
+  grid-template-rows: auto auto;        
+  column-gap: 20px;
+  row-gap: 16px;
+  align-items: center;
+  margin: 24px 0 32px; 
 }
+
 
 .profile__avatar-container {
   position: relative;
@@ -13,14 +18,26 @@
   overflow: hidden;
 }
 
+.profile__text {
+ grid-row: 1; grid-column: 2; 
+}
+
+.profile__actions { 
+display: flex;
+gap: 16px;
+align-items: center;
+justify-content: flex-start;
+flex-wrap: wrap;
+}
+
 .profile__avatar-btn {
   position: absolute;
   inset: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
-  border-radius: 8px;
-  z-index: 1;                              
+  z-index: 1;     
+  border: none;                         
 }
 
 .profile__avatar-btn::before {
@@ -39,7 +56,7 @@
 }
 
 .profile__avatar-btn::after {
-  content: "Edit Avatar";
+  content: "Paste the link to an image";
   position: absolute;
   left: 12px;
   bottom: 12px;
@@ -63,15 +80,25 @@
 }
 
 .profile__avatar {
-  height: 190px;
-  width: 190px;
-  margin-right: 20px;
-  border-radius: 8px;
+  height: 100%;
+  width: 100%;
+ object-fit: cover;
+ display: block;
 }
 
 .profile__column {
-  display: flex;
+  display: flex;             
   flex-direction: column;
+  align-items: flex-start !important;  
+  gap: 6px;                   
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0;
+}
+
+.profile__column .profile__edit-btn {
+  flex: 0 0 auto;
+  align-items: flex-start;
 }
 
 .profile__name {
@@ -101,23 +128,40 @@
 }
 
 .profile__edit-btn{
-  margin-top: auto;
   display: inline-flex;
   gap: 8px;
-  padding: 6px 10px;
   border: 0;
-  border-radius: 90px;
+  border-radius: 6px;
   background-color: rgba(33,33,33,0.08);
   color: #212121;
   font-size: 16px;
   line-height: 100%;
   font-weight: 500;
   opacity: .7;
+  align-items: center;
+  justify-content: center;
+  min-width: unset;
+  cursor: pointer;
+  background: transparent;
+  align-self: flex-start !important;  
+  margin-left: 0 !important;           
+  width: auto !important;            
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+}
+
+  .profile__edit-btn::before {
+   content: "";
+   width: 14px;
+   height: 14px;
+   display: inline-block;
+   margin-right: 6px;
+   margin-left: 0;
   }
 
 .profile__edit-btn:hover {
   opacity: 1;
-  cursor: pointer;
+  background: transparent;
 }
 
 .profile__add-btn {

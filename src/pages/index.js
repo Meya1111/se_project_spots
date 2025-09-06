@@ -9,6 +9,7 @@ import closeIconLight from "../images/Closeicon.svg";
 import pencilIcon from "../images/pencil.svg";
 import plusIcon from "../images/plus.svg";
 import Api from "../scripts/Api.js";
+import spotLogo from '../images/logo.svg';
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -23,19 +24,6 @@ const cardsContainer = document.querySelector(".cards__list");
 const linkInput = document.querySelector("#card-link-input");
 const descInput = document.querySelector("#card-description-input");
 
-function handleAvatarSubmit(evt) {
-  evt.preventDefault();
-
-  api
-    .editAvatarInfo({ avatar: avatarInput.value })
-    .then((data) => {
-      profileAvatarEl.src = data.avatar;
-      editAvatarForm.reset();
-      closeModal(avatarModal);
-    })
-    .catch(console.error);
-}
-
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
@@ -45,7 +33,9 @@ const editProfileDescriptionInput = editProfileModal.querySelector(
   "#edit-profile-description"
 );
 const profileAvatarEl = document.querySelector(".profile__avatar");
-const avatarModalBtn = document.querySelector(".profile__avatar-btn");
+const avatarOpenBtn = document.querySelector(".profile__avatar-btn");
+const headerLogo = document.querySelector('.header__logo');
+headerLogo.src = spotLogo;
 
 const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
@@ -74,9 +64,18 @@ let selectedCard, selectedCardId;
 
 const avatarModal = document.querySelector("#avatar-modal");
 const avatarForm = avatarModal.querySelector(".modal__form");
-const avatarSubmitBtn = avatarModal.querySelector(".modal__button");
-const avatarModalCloseBtn = avatarModal.querySelector(".modal__close");
-const avatarInput = avatarModal.querySelector("#profile-avatar-input");
+const avatarSubmitBtn = avatarModal.querySelector(".modal__submit-btn");
+const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-btn");
+const avatarInput = avatarModal.querySelector("#edit-avatar-input");
+
+function urlLooksOK(v) {
+  try { new URL(v); return true; } catch { return false; }
+}
+
+function setAvatarSaveState() {
+  if (!avatarSubmitBtn || !avatarInput) return;
+  avatarSubmitBtn.disabled = !urlLooksOK(avatarInput.value.trim());
+}
 
 const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = deleteModal.querySelector(".modal__delete-form");
@@ -253,13 +252,26 @@ editProfileForm.addEventListener("submit", handledEditProfileSubmit);
 function handleLike(evt, id) {
   const btn = evt.currentTarget;
 }
-const cardsList = document.querySelector(".cards__list");
 
-// return cardElement;
+function handleAvatarSubmit(evt) {
+  evt.preventDefault();
+  if (!avatarInput || !profileAvatarEl) return;
+
+  const url = avatarInput.value.trim();
+  if (!urlLooksOK(url)) return;
+
+  profileAvatarEl.src = url;
+
+  avatarForm.reset();
+  setAvatarSaveState();
+  closeModal(avatarModal);
+}
+
+const cardsList = document.querySelector(".cards__list");
 
 avatarForm.addEventListener("submit", handleAvatarSubmit);
 
-avatarModalBtn.addEventListener("click", () => {
+avatarOpenBtn.addEventListener("click", () => {
   openModal(avatarModal);
 });
 
@@ -300,6 +312,23 @@ document.querySelectorAll(".modal").forEach((modal) => {
   });
 });
 
+if (avatarForm) {
+  avatarForm.addEventListener("submit", handleAvatarSubmit);
+}
+
+if (avatarOpenBtn && avatarModal) {
+  avatarOpenBtn.addEventListener("click", () => openModal(avatarModal));
+}
+
+if (avatarModalCloseBtn) {
+  avatarModalCloseBtn.addEventListener("click", () => closeModal(avatarModal));
+}
+
+if (avatarInput) {
+  setAvatarSaveState(); 
+  avatarInput.addEventListener("input", setAvatarSaveState);
+}
+
 function handleEscape(evt) {
   if (evt.key === "Escape") {
     const openedModal = document.querySelector(".modal_is-opened");
@@ -317,4 +346,4 @@ function closeModal(modal) {
   document.removeEventListener("keydown", handleEscape);
 }
 
-//export { getCardElement };
+
