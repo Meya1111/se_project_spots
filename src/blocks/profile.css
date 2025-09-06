@@ -6,6 +6,8 @@
 
 .profile__avatar-container {
   position: relative;
+  display: inline-block
+  
 }
 
 .profile__avatar-btn {
