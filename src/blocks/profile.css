@@ -6,8 +6,11 @@
 
 .profile__avatar-container {
   position: relative;
-  display: inline-block
-  
+  display: inline-block;
+  border-radius: 8px;
+  width: 168px;
+  height: 168px;
+  overflow: hidden;
 }
 
 .profile__avatar-btn {
