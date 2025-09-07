@@ -10,7 +10,13 @@ import pencilIcon from "../images/pencil.svg";
 import plusIcon from "../images/plus.svg";
 import Api from "../scripts/Api.js";
 import spotLogo from '../images/logo.svg';
+import avatarImg from '../images/avatar.jpg';    
+   
 
+const btn = document.querySelector('.profile__avatar-btn');
+if (btn && !btn.querySelector('.profile__pencil-icon')) {
+  btn.insertAdjacentHTML('beforeend', '<img class="profile__pencil-icon" alt="">');
+}
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {

@@ -51,7 +51,7 @@ flex-wrap: wrap;
 }
 
 
-.profile__avatar-container:hover.profile__avatar-btn::before,.profile__avatar-container:hover.profile__avatar-btn::after {
+.profile__avatar-container:hover {
  opacity: 1;
 }
 
