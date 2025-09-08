@@ -93,4 +93,14 @@
   .card__image {
     height: 288px;
   }
+
+  .cards__list {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 12px;                  
+  }
+
+  .card {
+    width: 100%;
+  }
 }

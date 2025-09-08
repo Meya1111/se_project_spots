@@ -230,7 +230,9 @@ flex-wrap: wrap;
   }
 
   .profile__edit-btn {
-    margin: auto;
+    width: 100%;
+    justify-content: center;
+    padding: 10px 14px;
   }
 }
 

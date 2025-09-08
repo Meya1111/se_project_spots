@@ -38,13 +38,11 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  editAvatarInfo(avatar) {
+  updateAvatar(avatarUrl) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({
-        avatar,
-      }),
+      headers: this._headers,        
+      body: JSON.stringify({ avatar: avatarUrl }),
     }).then(this._checkResponse);
   }
 
