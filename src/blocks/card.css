@@ -91,7 +91,9 @@
     line-height: 100%;
   }
   .card__image {
-    height: 288px;
+    height: auto;
+    width: 100%;
+    object-fit: cover;
   }
 
   .cards__list {
@@ -102,5 +104,7 @@
 
   .card {
     width: 100%;
+    max-width: 288px;
+    margin: 0 auto;
   }
 }

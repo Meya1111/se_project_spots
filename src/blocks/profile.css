@@ -192,15 +192,24 @@ flex-wrap: wrap;
   .profile {
     flex-direction: column;
     max-width: 288px;
-    align-items: center;
+    align-items: stretch;
     text-align: center;
-    padding-top: 20px;
+    margin: 0 auto;
+    display: flex;
   }
 
   .profile__avatar-btn {
-    visibility: visible;
+    visibility: visible;          
+    opacity: 1;                   
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
-
 
   .profile__avatar {
     height: 80px;
@@ -225,12 +234,16 @@ flex-wrap: wrap;
   }
 
   .profile__add-btn {
-    margin: 20px 0 0;
-    width: 288px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 14px;
+    margin-top: 12px;
   }
-
+  
   .profile__edit-btn {
     width: 100%;
+    display: flex;
     justify-content: center;
     padding: 10px 14px;
   }
